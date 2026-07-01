@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi Amor ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:linear-gradient(180deg,#ffb6d9,#ff8ec7,#ff69b4);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
+    z-index:10;
+    position:relative;
+}
+
+h1{
+    color:white;
+    font-size:3em;
+    text-shadow:0 0 15px #ff0066;
+    margin-bottom:30px;
+}
+
+#mensaje{
+    color:white;
+    font-size:2em;
+    min-height:90px;
+    text-shadow:0 0 10px black;
+    transition:.5s;
+}
+
+button{
+    margin-top:30px;
+    padding:15px 35px;
+    font-size:1.2em;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff2f92;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+button:hover{
+    transform:scale(1.1);
+    background:#ffe6f2;
+}
+
+.heart{
+    position:absolute;
+    color:#ff0055;
+    animation:fall linear forwards;
+    user-select:none;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-10vh) rotate(0deg);
+        opacity:1;
+    }
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+#proposal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(255,105,180,.96);
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:100;
+}
+
+#proposal h2{
+    color:white;
+    font-size:3em;
+    margin-bottom:40px;
+    text-align:center;
+}
+
+.options{
+    display:flex;
+    gap:30px;
+}
+
+.yes,.no{
+    padding:15px 40px;
+    font-size:1.5em;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.yes{
+    background:#4CAF50;
+    color:white;
+}
+
+.no{
+    background:#ff4444;
+    color:white;
+    position:relative;
+}
+
+#final{
+    display:none;
+    margin-top:30px;
+    color:white;
+    font-size:2em;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.08);
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>❤️ Para Ti ❤️</h1>
+
+<div id="mensaje">
+Haz clic en el botón 💕
+</div>
+
+<button onclick="mostrarFrase()">
+Sorpréndeme
+</button>
+
+</div>
+
+<div id="proposal">
+
+<h2>💍 ¿Sí nos vamos a casar, mi amor? 💍</h2>
+
+<div class="options">
+
+<button class="yes" onclick="acepto()">Sí ❤️</button>
+
+<button class="no" id="no" onmouseover="escapar()">No</button>
+
+</div>
+
+<div id="final">
+❤️ Sabía que dirías que sí. Te amo demasiado. ❤️
+</div>
+
+</div>
+
+<script>
+
+const frases=[
+"❤️ Te amo demasiado, amor ❤️",
+"🥰 Me encanta todo de ti 🥰",
+"😘 Me encanta tu boquita hermosa 😘",
+"💕 Eres lo mejor que me ha pasado 💕",
+"🌹 Cada día te amo más 🌹"
+];
+
+let contador=0;
+
+function mostrarFrase(){
+
+if(contador<frases.length){
+
+document.getElementById("mensaje").innerHTML=frases[contador];
+contador++;
+
+}else{
+
+document.getElementById("proposal").style.display="flex";
+
+}
+
+}
+
+function acepto(){
+
+document.getElementById("final").style.display="block";
+
+}
+
+function escapar(){
+
+const btn=document.getElementById("no");
+
+const x=Math.random()*(window.innerWidth-150);
+
+const y=Math.random()*(window.innerHeight-80);
+
+btn.style.position="fixed";
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+
+}
+
+function crearCorazon(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML=["❤️","💖","💕","💗","💘"][Math.floor(Math.random()*5)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*35)+"px";
+
+heart.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(crearCorazon,180);
+
+</script>
+
+</body>
+</html>
